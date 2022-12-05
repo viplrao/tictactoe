@@ -30,6 +30,9 @@ def player(board: Board) -> str:
     """
     Returns player who has the next turn on a board.
     """
+    if board == initial_state():
+        return X
+
     num_xs = 0
     num_os = 0
     for row in board:
@@ -40,7 +43,6 @@ def player(board: Board) -> str:
                 num_os += 1
 
     return X if num_xs > num_os else O
-
 
 
 def actions(board: Board) -> set:
