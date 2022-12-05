@@ -9,7 +9,6 @@ from typing import List, Optional, Tuple, Union
 X = "X"
 O = "O"
 EMPTY: None = None
-current_player = X
 
 # Yay Typing!!
 Board = List[List]
@@ -31,14 +30,17 @@ def player(board: Board) -> str:
     """
     Returns player who has the next turn on a board.
     """
-    global current_player
-    print(f"player: current_player = {current_player}")
-    if current_player == X:
-        current_player = O
-        return X
-    else:
-        current_player = X
-        return O
+    num_xs = 0
+    num_os = 0
+    for row in board:
+        for square in row:
+            if square == X:
+                num_xs += 1
+            elif square == O:
+                num_os += 1
+
+    return X if num_xs > num_os else O
+
 
 
 def actions(board: Board) -> set:
