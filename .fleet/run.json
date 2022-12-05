@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "python",
+            "name": "runner.py",
+            "arguments": ["runner.py"],
+        },
+
+    ]
+}
