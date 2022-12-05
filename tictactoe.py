@@ -151,9 +151,9 @@ def minimax(board: Board) -> Optional[Action]:
         return None
 
     if player(board) == X:
-        return minimax(result(board, max_value(board)[1]))
+        return max_value(board)[1]
     else:
-        return minimax(result(board, min_value(board)[1]))
+        return min_value(board)[1]
 
 
 def max_value(board: Board) -> Tuple[Numeric, Action]:
