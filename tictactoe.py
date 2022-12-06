@@ -1,5 +1,6 @@
 """
 Tic Tac Toe Player
+Written by: Vipul Rao
 """
 
 from copy import deepcopy
@@ -9,7 +10,7 @@ X = "X"
 O = "O"
 EMPTY: None = None
 
-# Yay Typing!!
+# Yay Typing!! (mypy)
 Board = List[List]
 Player = str
 Numeric = Union[int, float]

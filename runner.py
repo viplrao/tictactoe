@@ -1,3 +1,6 @@
+"""
+    This runner code was provided with the pset.
+"""
 import pygame
 import sys
 import time
