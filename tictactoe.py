@@ -2,7 +2,6 @@
 Tic Tac Toe Player
 """
 
-import math
 from copy import deepcopy
 from typing import List, Optional, Tuple, Union
 
@@ -33,6 +32,9 @@ def player(board: Board) -> str:
     if board == initial_state():
         return X
 
+    if terminal(board):
+        return ""
+
     num_xs = 0
     num_os = 0
     for row in board:
@@ -49,6 +51,9 @@ def actions(board: Board) -> set:
     """
     Returns set of all possible actions (i, j) available on the board.
     """
+    if terminal(board):
+        return set()
+
     possible_actions = set()
     # Add all empty squares to set
     for i, _ in enumerate(board):
@@ -65,9 +70,9 @@ def result(board: Board, action: Action) -> Board:
     if action is None:
         return board
 
-    return_board = deepcopy(board)
-    i = int(action[0])
-    j = int(action[1])
+    return_board = deepcopy(board)  # Don't modify original board
+    i = action[0]
+    j = action[1]
 
     invalid_action = \
         i > 2 or \
@@ -90,11 +95,12 @@ def winner(board: Board) -> Optional[Player]:
     if board == initial_state():
         return None
 
+    # Horizontal Check
     for row in board:
-        # Horizontal Check
         if all(x == row[0] for x in row):
             return row[0]
 
+    # Vertical Check
     for j, _ in enumerate(board[0]):
         first_square = board[0][j]
         all_same = True
@@ -109,7 +115,7 @@ def winner(board: Board) -> Optional[Player]:
     snd_diag = board[2][0] == board[1][1] == board[0][2]
 
     if fst_diag or snd_diag:
-        return board[1][1]
+        return board[1][1]  # Center Square applies to both
 
     return None
 
